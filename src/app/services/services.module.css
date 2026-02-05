@@ -1,0 +1,27 @@
+.section {
+    padding: 8rem 0;
+    position: relative;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.ctaSection {
+    margin-top: 8rem;
+    padding: 4rem;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--secondary) / 0.3) 100%);
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    text-align: center;
+}

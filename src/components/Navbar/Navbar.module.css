@@ -1,0 +1,176 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+    background: rgba(15, 15, 20, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    height: 70px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(var(--foreground));
+    z-index: 1001;
+}
+
+.logoAccent {
+    color: hsl(var(--primary));
+}
+
+.links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.link:hover {
+    color: hsl(var(--foreground));
+}
+
+.link.active {
+    color: hsl(var(--foreground));
+}
+
+.link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--primary));
+    border-radius: 1px;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.loginLink {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    transition: color 0.2s;
+}
+
+.loginLink:hover {
+    color: hsl(var(--foreground));
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+    display: none;
+    background: none;
+    border: none;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: hsl(var(--background));
+    padding: 6rem 1.5rem 2rem;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobileLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.mobileLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    border-radius: var(--radius);
+    transition: all 0.2s;
+}
+
+.mobileLink:hover,
+.mobileLink.active {
+    background: hsl(var(--secondary));
+    color: hsl(var(--primary));
+}
+
+.mobileLink span {
+    font-size: 1.25rem;
+}
+
+.mobileActions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+@media (max-width: 768px) {
+
+    .links,
+    .actions {
+        display: none;
+    }
+
+    .mobileMenuBtn {
+        display: block;
+    }
+
+    .mobileMenu {
+        display: flex;
+    }
+}

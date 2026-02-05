@@ -1,0 +1,60 @@
+.card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 10px 40px -10px hsl(var(--primary) / 0.1);
+    transform: translateY(-5px);
+}
+
+.icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 1rem;
+    background: hsl(var(--primary) / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: hsl(var(--primary));
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: hsl(var(--foreground));
+    font-size: 0.95rem;
+}
+
+.features li svg {
+    color: hsl(var(--primary));
+    flex-shrink: 0;
+}
