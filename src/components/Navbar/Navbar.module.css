@@ -2,67 +2,87 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 80px;
+    right: 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
     z-index: 1000;
     transition: all 0.3s ease;
-    border-bottom: 1px solid transparent;
+    background: transparent;
 }
 
 .scrolled {
-    background: rgba(15, 15, 20, 0.95);
+    background: hsl(var(--background) / 0.8);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     height: 70px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid hsl(var(--border));
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: hsl(var(--foreground));
-    z-index: 1001;
+    flex-direction: column;
+    line-height: 1.2;
 }
 
-.logoAccent {
+.logoText {
+    font-size: 1.8rem;
+    font-weight: 900;
     color: hsl(var(--primary));
+    letter-spacing: -0.04em;
+}
+
+.logoTagline {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: hsl(var(--muted-foreground));
+    margin-top: 4px;
+    padding-top: 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    opacity: 0.9;
 }
 
 .links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
+    gap: 1.5rem;
+    white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+    .links {
+        display: flex;
+        gap: 1.8rem;
+    }
 }
 
 .link {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: hsl(var(--muted-foreground));
+    font-size: 1rem;
+    font-weight: 700;
+    color: hsl(var(--foreground));
     transition: color 0.2s ease;
     position: relative;
 }
 
 .link:hover {
-    color: hsl(var(--foreground));
+    color: hsl(var(--primary));
 }
 
-.link.active {
-    color: hsl(var(--foreground));
+.active {
+    color: hsl(var(--primary));
 }
 
-.link.active::after {
+.active::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -70,107 +90,77 @@
     width: 100%;
     height: 2px;
     background: hsl(var(--primary));
-    border-radius: 1px;
+    border-radius: 2px;
 }
 
 .actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.loginLink {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: hsl(var(--muted-foreground));
-    transition: color 0.2s;
-}
-
-.loginLink:hover {
-    color: hsl(var(--foreground));
-}
-
-/* Mobile Menu Button */
-.mobileMenuBtn {
     display: none;
-    background: none;
+    margin-left: 1.5rem;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .actions {
+        display: block;
+    }
+}
+
+.mobileMenuBtn {
+    display: block;
+    background: transparent;
     border: none;
     color: hsl(var(--foreground));
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1001;
 }
 
-/* Mobile Menu */
+@media (min-width: 1024px) {
+    .mobileMenuBtn {
+        display: none;
+    }
+}
+
 .mobileMenu {
-    display: none;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
     height: 100vh;
     background: hsl(var(--background));
-    padding: 6rem 1.5rem 2rem;
+    z-index: 1001;
+    padding: 5rem 2rem 2rem;
+    display: flex;
     flex-direction: column;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
+    gap: 2rem;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid hsl(var(--border));
 }
 
 .mobileMenuOpen {
-    opacity: 1;
-    visibility: visible;
+    right: 0;
 }
 
 .mobileLinks {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    flex-grow: 1;
+    gap: 1.5rem;
 }
 
 .mobileLink {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     color: hsl(var(--foreground));
-    border-radius: var(--radius);
-    transition: all 0.2s;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid hsl(var(--border));
 }
 
-.mobileLink:hover,
 .mobileLink.active {
-    background: hsl(var(--secondary));
     color: hsl(var(--primary));
-}
-
-.mobileLink span {
-    font-size: 1.25rem;
+    border-bottom-color: hsl(var(--primary));
 }
 
 .mobileActions {
-    display: flex;
-    gap: 1rem;
-    padding-top: 2rem;
-    border-top: 1px solid hsl(var(--border));
-}
-
-@media (max-width: 768px) {
-
-    .links,
-    .actions {
-        display: none;
-    }
-
-    .mobileMenuBtn {
-        display: block;
-    }
-
-    .mobileMenu {
-        display: flex;
-    }
+    margin-top: auto;
 }

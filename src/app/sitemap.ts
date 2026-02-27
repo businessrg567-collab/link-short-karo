@@ -1,65 +1,79 @@
 import { MetadataRoute } from 'next'
-import { indianCities } from '@/data/cityData'
 import { blogPosts } from '@/data/blogData'
+import { businessIdeasArticles } from '@/data/businessIdeasData'
+import { onlineShopArticles } from '@/data/onlineShopData'
+import { loanGuideArticles } from '@/data/loanGuideData'
+import { locationArticles } from '@/data/locationBusinessData'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://linkshortkaro.com'
+    const baseUrl = 'https://moneygen.online'
 
-    // Static pages
-    const staticPages: MetadataRoute.Sitemap = [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 1,
-        },
-        {
-            url: `${baseUrl}/services`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/pricing`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/blog`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/support`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.5,
-        },
-        {
-            url: `${baseUrl}/contact`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.5,
-        },
-    ]
-
-    // Location pages
-    const locationPages: MetadataRoute.Sitemap = indianCities.map((city) => ({
-        url: `${baseUrl}/locations/${city.slug}`,
+    const staticPages = [
+        '',
+        '/small-business-ideas',
+        '/online-shop-ideas',
+        '/loan-credit-card-guide',
+        '/budget-planner',
+        '/business-profit-calculator',
+        '/loan-emi-calculator',
+        '/savings-goal-calculator',
+        '/gst-calculator',
+        '/sip-calculator',
+        '/blog',
+        '/about',
+        '/contact',
+        '/privacy',
+        '/terms',
+        '/disclaimer',
+        '/locations',
+    ].map((route) => ({
+        url: `${baseUrl}${route}`,
         lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.7,
+        changeFrequency: 'daily' as const,
+        priority: route === '' ? 1 : 0.8,
     }))
 
-    // Blog pages
-    const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    const blogPages = blogPosts.map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
         lastModified: new Date(),
-        changeFrequency: 'weekly',
+        changeFrequency: 'weekly' as const,
         priority: 0.6,
     }))
 
-    return [...staticPages, ...locationPages, ...blogPages]
+    const businessPages = businessIdeasArticles.map((article) => ({
+        url: `${baseUrl}/small-business-ideas/${article.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+    }))
+
+    const shopPages = onlineShopArticles.map((article) => ({
+        url: `${baseUrl}/online-shop-ideas/${article.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+    }))
+
+    const loanPages = loanGuideArticles.map((article) => ({
+        url: `${baseUrl}/loan-credit-card-guide/${article.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+    }))
+
+    const locationPages = locationArticles.map((article) => ({
+        url: `${baseUrl}/locations/${article.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
+    }))
+
+    return [
+        ...staticPages, 
+        ...blogPages, 
+        ...businessPages, 
+        ...shopPages, 
+        ...loanPages, 
+        ...locationPages
+    ]
 }

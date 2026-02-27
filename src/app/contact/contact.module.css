@@ -1,239 +1,155 @@
 .main {
-    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 80px;
 }
 
-.hero {
-    padding: 8rem 0 4rem;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: hsl(var(--muted-foreground));
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.content {
-    padding: 3rem 0 6rem;
-}
-
-.grid {
+.contactGrid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
-    align-items: start;
+    margin-top: 4rem;
+}
+
+@media (min-width: 992px) {
+    .contactGrid {
+        grid-template-columns: 1.2fr 0.8fr;
+    }
 }
 
 .formSection {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: var(--radius);
-    padding: 2.5rem;
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
-.form h2 {
-    font-size: 1.5rem;
+.formSection h2 {
+    font-size: 2rem;
+    font-weight: 800;
     margin-bottom: 2rem;
 }
 
-.formGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.contactForm {
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 1.5rem;
 }
 
-.formGroup {
+.inputGroup {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 
-.formGroup label {
+.inputGroup label {
+    font-weight: 700;
     font-size: 0.9rem;
-    font-weight: 500;
+    color: hsl(var(--foreground));
 }
 
-.formGroup input,
-.formGroup select,
-.formGroup textarea {
-    padding: 0.875rem;
-    border-radius: var(--radius);
+.inputGroup input,
+.inputGroup textarea {
+    padding: 1rem;
+    border-radius: 1rem;
     border: 1px solid hsl(var(--border));
     background: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-size: 1rem;
-    transition: all 0.2s;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
 }
 
-.formGroup input:focus,
-.formGroup select:focus,
-.formGroup textarea:focus {
+.inputGroup input:focus,
+.inputGroup textarea:focus {
     outline: none;
     border-color: hsl(var(--primary));
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
-}
-
-.formGroup textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.successMessage {
-    text-align: center;
-    padding: 3rem;
-}
-
-.successIcon {
-    width: 80px;
-    height: 80px;
-    background: hsl(var(--primary) / 0.1);
-    color: hsl(var(--primary));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    margin: 0 auto 1.5rem;
-}
-
-.successMessage h2 {
-    font-size: 1.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.successMessage p {
-    color: hsl(var(--muted-foreground));
-    margin-bottom: 2rem;
 }
 
 .infoSection {
     display: flex;
     flex-direction: column;
+    gap: 3rem;
+}
+
+.infoBlock h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.detailsList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
 }
 
-.infoCard {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    border-radius: var(--radius);
-    padding: 1.5rem;
-}
-
-.infoCard h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid hsl(var(--border));
-}
-
-.infoItem {
+.detailItem {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
+    align-items: flex-start;
 }
 
-.infoIcon {
-    font-size: 1.25rem;
-}
-
-.infoItem strong {
-    display: block;
-    font-size: 0.85rem;
-    color: hsl(var(--muted-foreground));
-    margin-bottom: 0.25rem;
-}
-
-.infoItem a,
-.infoItem span {
-    font-size: 0.95rem;
-    color: hsl(var(--foreground));
-}
-
-.infoItem a:hover {
-    color: hsl(var(--primary));
-}
-
-.quickLinks {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.quickLinks a {
-    font-size: 0.95rem;
-    color: hsl(var(--foreground));
-    transition: all 0.2s;
-}
-
-.quickLinks a:hover {
-    color: hsl(var(--primary));
-    transform: translateX(4px);
-    display: inline-block;
-}
-
-.socialLinks {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.socialBtn {
-    width: 44px;
-    height: 44px;
+.detailIcon {
+    font-size: 1.5rem;
+    background: hsl(var(--primary) / 0.1);
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: hsl(var(--secondary));
-    border-radius: var(--radius);
-    color: hsl(var(--foreground));
-    transition: all 0.2s;
+    border-radius: 12px;
 }
 
-.socialBtn:hover {
-    background: hsl(var(--primary));
-    color: white;
-    transform: translateY(-2px);
+.detailText p {
+    font-weight: 700;
+    margin: 0;
 }
 
-@media (max-width: 1024px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
+.detailText span {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.9rem;
+}
 
-    .infoSection {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+.faqSection {
+    margin-top: 6rem;
+}
 
-    .infoCard {
-        flex: 1;
-        min-width: 250px;
+.faqSection h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.faqGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .faqGrid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
+.faqCard {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
 
-    .formGrid {
-        grid-template-columns: 1fr;
-    }
+.faqCard h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: hsl(var(--primary));
+}
 
-    .formSection {
-        padding: 1.5rem;
-    }
-
-    .infoSection {
-        flex-direction: column;
-    }
+.faqCard p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: hsl(var(--muted-foreground));
 }

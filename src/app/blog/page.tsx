@@ -1,137 +1,151 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useState, useMemo } from 'react';
+import SearchBox from '@/components/SearchBox';
 import { blogPosts } from '@/data/blogData';
-import styles from './blog.module.css';
 
-export default function Blog() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedLocation, setSelectedLocation] = useState('all');
+const categories = ["All", "Small Business", "Finance", "Online Earning", "Loans", "Budgeting"];
 
-    const locations = useMemo(() => {
-        const locs = [...new Set(blogPosts.map(post => post.location))];
-        return ['all', ...locs.sort()];
-    }, []);
+const features = [
+    { icon: "🔬", title: "Expert Research", desc: "Every article is fact-checked and updated monthly" },
+    { icon: "📊", title: "Data-Backed Insights", desc: "Real numbers, not just theories" },
+    { icon: "🇮🇳", title: "India Focused", desc: "Content tailored for the Indian economic context" },
+    { icon: "📱", title: "Mobile-Friendly", desc: "Read comfortably on any device, anytime" },
+];
 
-    const filteredPosts = useMemo(() => {
-        return blogPosts.filter(post => {
-            const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                post.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-            const matchesLocation = selectedLocation === 'all' || post.location === selectedLocation;
-            return matchesSearch && matchesLocation;
-        });
-    }, [searchTerm, selectedLocation]);
+export default function BlogPage() {
+    const [filteredPosts, setFilteredPosts] = useState(blogPosts);
+    const [activeCategory, setActiveCategory] = useState('All');
+
+    const handleSearch = (query: string) => {
+        const cat = activeCategory === 'All' ? null : activeCategory;
+        const filtered = blogPosts.filter(post =>
+            (post.title.toLowerCase().includes(query.toLowerCase()) ||
+                post.excerpt.toLowerCase().includes(query.toLowerCase())) &&
+            (!cat || post.category === cat)
+        );
+        setFilteredPosts(filtered);
+    };
+
+    const handleCategory = (cat: string) => {
+        setActiveCategory(cat);
+        setFilteredPosts(cat === 'All' ? blogPosts : blogPosts.filter(p => p.category === cat));
+    };
+
+    const featured = blogPosts[0];
 
     return (
-        <main className={styles.main}>
-            <section className={styles.hero}>
-                <div className="container">
-                    <h1 className="title-gradient" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', textAlign: 'center' }}>
-                        Digital Marketing Insights
+        <main style={{ paddingTop: '80px' }}>
+
+            {/* Hero */}
+            <section style={{ background: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)', padding: '60px 0', color: 'white' }}>
+                <div className="container" style={{ textAlign: 'center' }}>
+                    <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: '100px', padding: '0.4rem 1.2rem', fontSize: '0.85rem', fontWeight: 700, display: 'inline-block', marginBottom: '1.25rem' }}>
+                        ✍️ Expert Financial Insights
+                    </span>
+                    <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', fontWeight: 900, margin: '0 0 1rem', lineHeight: 1.15 }}>
+                        Moneygen Blog — Learn, Earn, Grow
                     </h1>
-                    <p style={{ fontSize: '1.2rem', color: 'hsl(var(--muted-foreground))', textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem' }}>
-                        Location-specific guides for 30 major Indian cities. Learn how to leverage link management for your local market.
+                    <p style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
+                        Deep-dive guides on business, personal finance, loans, and online earning — updated weekly for India 2026.
                     </p>
-
-                    {/* Search and Filter */}
-                    <div className={styles.filters}>
-                        <div className={styles.searchWrapper}>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.searchIcon}>
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                            <input
-                                type="text"
-                                placeholder="Search articles or cities..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className={styles.searchInput}
-                            />
-                        </div>
-                        <select
-                            value={selectedLocation}
-                            onChange={(e) => setSelectedLocation(e.target.value)}
-                            className={styles.locationSelect}
-                        >
-                            {locations.map(loc => (
-                                <option key={loc} value={loc}>
-                                    {loc === 'all' ? 'All Locations' : loc}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
                 </div>
             </section>
 
-            <section className={styles.articlesSection}>
-                <div className="container">
-                    <p className={styles.resultCount}>{filteredPosts.length} articles found</p>
-
-                    <div className={styles.grid}>
-                        {filteredPosts.map((post) => (
-                            <article key={post.id} className={styles.card}>
-                                <div className={styles.cardImage}>
-                                    <Image
-                                        src={post.image}
-                                        alt={post.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        className={styles.postThumbnail}
-                                    />
-                                    <div className={styles.cardHeader}>
-                                        <span className={styles.category}>{post.category}</span>
-                                        <span className={styles.location}>{post.location}</span>
-                                    </div>
+            {/* Featured Post */}
+            {featured && (
+                <section style={{ padding: '60px 0', background: 'hsl(var(--secondary) / 0.3)' }}>
+                    <div className="container">
+                        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem' }}>📌 Featured Article</h2>
+                        <Link href={`/blog/${featured.slug}`} className="card" style={{ textDecoration: 'none', display: 'grid', gridTemplateColumns: '1fr', gap: 0, overflow: 'hidden' }}>
+                            <div style={{ height: '280px', overflow: 'hidden', position: 'relative' }}>
+                                <img src={featured.image || ''} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="eager" />
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }} />
+                                <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', zIndex: 1 }}>
+                                    <span style={{ background: 'hsl(var(--accent))', color: 'white', padding: '0.2rem 0.8rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>{featured.category}</span>
                                 </div>
-                                <h2 className={styles.cardTitle}>
-                                    <Link href={`/blog/${post.slug}`}>
-                                        {post.title}
-                                    </Link>
-                                </h2>
-                                <p className={styles.cardExcerpt}>{post.excerpt}</p>
-                                <div className={styles.cardFooter}>
-                                    <div className={styles.meta}>
-                                        <span>{post.date}</span>
-                                        <span>•</span>
-                                        <span>{post.readTime}</span>
-                                    </div>
-                                    <Link href={`/blog/${post.slug}`} className={styles.readMore}>
-                                        Read Article →
-                                    </Link>
+                            </div>
+                            <div style={{ padding: '2rem' }}>
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.75rem', color: 'hsl(var(--foreground))' }}>{featured.title}</h3>
+                                <p style={{ color: 'hsl(var(--muted-foreground))', marginBottom: '1.25rem' }}>{featured.excerpt}</p>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                                    <span style={{ fontSize: '0.85rem', color: 'hsl(var(--muted-foreground))' }}>{featured.date}</span>
+                                    <span style={{ fontSize: '0.85rem', color: 'hsl(var(--muted-foreground))' }}>{featured.readTime}</span>
+                                    <span style={{ color: '#059669', fontWeight: 700 }}>Read Article →</span>
                                 </div>
-                            </article>
-                        ))}
-                    </div>
-
-                    {filteredPosts.length === 0 && (
-                        <div className={styles.noResults}>
-                            <p>No articles found matching your search criteria.</p>
-                            <button
-                                onClick={() => { setSearchTerm(''); setSelectedLocation('all'); }}
-                                className="btn btn-outline"
-                            >
-                                Clear Filters
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className={styles.ctaSection}>
-                <div className="container">
-                    <div className={styles.ctaCard}>
-                        <h2>Want personalized marketing advice?</h2>
-                        <p>Our agency team can create a custom strategy for your business location.</p>
-                        <Link href="/contact" className="btn btn-primary">
-                            Schedule a Consultation
+                            </div>
                         </Link>
                     </div>
+                </section>
+            )}
+
+            {/* Category Filter + Articles */}
+            <section style={{ padding: '60px 0' }}>
+                <div className="container">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+                        <div>
+                            <h2 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '0.25rem' }}>All Articles</h2>
+                            <p style={{ color: 'hsl(var(--muted-foreground))' }}>{blogPosts.length} expert guides available</p>
+                        </div>
+                    </div>
+                    {/* Category Tabs */}
+                    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+                        {categories.map(cat => (
+                            <button
+                                key={cat}
+                                onClick={() => handleCategory(cat)}
+                                style={{ padding: '0.45rem 1rem', borderRadius: '100px', border: `2px solid ${activeCategory === cat ? '#059669' : 'hsl(var(--border))'}`, background: activeCategory === cat ? '#05966915' : 'transparent', color: activeCategory === cat ? '#059669' : 'hsl(var(--foreground))', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', transition: 'all 0.2s' }}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+                    <SearchBox onSearch={handleSearch} placeholder="Search articles..." />
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '2rem' }}>
+                        {filteredPosts.map((post, index) => (
+                            <Link key={post.slug} href={`/blog/${post.slug}`} className="card" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
+                                <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                                    <img
+                                        src={post.image || 'https://images.unsplash.com/photo-1491336477066-31156b5e4f3c?auto=format&fit=crop&q=80&w=600'}
+                                        alt={post.title}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                                        loading={index < 6 ? "eager" : "lazy"}
+                                    />
+                                    <span style={{ position: 'absolute', top: '1rem', left: '1rem', background: '#05966990', color: 'white', padding: '0.2rem 0.75rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
+                                        {post.category}
+                                    </span>
+                                </div>
+                                <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.6rem' }}>{post.title}</h3>
+                                    <p style={{ fontSize: '0.88rem', color: 'hsl(var(--muted-foreground))', flex: 1 }}>{post.excerpt}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
+                                        <span style={{ fontSize: '0.8rem', color: 'hsl(var(--muted-foreground))' }}>{post.readTime}</span>
+                                        <span style={{ color: '#059669', fontWeight: 700, fontSize: '0.9rem' }}>Read →</span>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </section>
+
+            {/* Why section */}
+            <section style={{ padding: '60px 0', background: 'hsl(var(--secondary) / 0.4)' }}>
+                <div className="container">
+                    <h2 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '2rem' }}>Why Read Moneygen Blog?</h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1.5rem' }}>
+                        {features.map((f, i) => (
+                            <div key={i} className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+                                <div style={{ fontSize: '2.25rem', marginBottom: '1rem' }}>{f.icon}</div>
+                                <h3 style={{ fontWeight: 800, marginBottom: '0.5rem' }}>{f.title}</h3>
+                                <p style={{ fontSize: '0.9rem', color: 'hsl(var(--muted-foreground))' }}>{f.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
         </main>
     );
 }

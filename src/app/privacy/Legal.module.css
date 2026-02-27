@@ -1,0 +1,72 @@
+.main {
+    padding-top: 120px;
+    padding-bottom: 0;
+}
+
+.legalContent {
+    max-width: 900px;
+    margin: 1.5rem auto 0;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    padding: 3rem;
+    border-radius: 2rem;
+    line-height: 1.8;
+}
+
+.legalContent h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: hsl(var(--foreground));
+    border-bottom: 2px solid hsl(var(--primary) / 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.legalContent h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.legalContent p {
+    margin-bottom: 1.5rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.legalContent ul,
+.legalContent ol {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.legalContent li {
+    margin-bottom: 0.75rem;
+}
+
+.lastUpdated {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.contactBox {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: hsl(var(--background));
+    border: 1px dashed hsl(var(--primary) / 0.4);
+    border-radius: 1.5rem;
+    text-align: center;
+}
+
+.contactBox h4 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}

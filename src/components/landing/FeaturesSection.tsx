@@ -1,54 +1,53 @@
-import styles from '@/app/page.module.css';
+import SectionHeading from '../SectionHeading';
+import styles from './HomeSections.module.css';
 
-interface FeatureCardProps {
-    title: string;
-    description: string;
-    icon: React.ReactNode;
-}
+const features = [
+    {
+        title: "Expert-Curated Ideas",
+        description: "Every business idea on Moneygen is researched and verified by industry experts for viability in the 2026 market.",
+        icon: "💡"
+    },
+    {
+        title: "Localized Analysis",
+        description: "We provide city-specific market data for 30+ Indian urban centers, helping you start where demand is highest.",
+        icon: "📍"
+    },
+    {
+        title: "Zero Investment Focus",
+        description: "Our core mission is to empower entrepreneurs with ideas that require minimal capital but offer max growth.",
+        icon: "🚀"
+    },
+    {
+        title: "Ad-Free Learning",
+        description: "While we support the site through minimal ads, our guides are designed for distraction-free deep reading and learning.",
+        icon: "📖"
+    },
+    {
+        title: "Financial Toolkits",
+        description: "From EMI calculators to complex business profit margin tools, we provide everything you need to plan.",
+        icon: "📊"
+    },
+    {
+        title: "Community Success",
+        description: "Join a growing tribe of 50,000+ readers who are building their financial future with Moneygen.",
+        icon: "🤝"
+    }
+];
 
-interface FeaturesSectionProps {
-    city?: string;
-    customFeatures?: FeatureCardProps[];
-}
-
-export default function FeaturesSection({ city = "India", customFeatures }: FeaturesSectionProps) {
-
-    const defaultFeatures = [
-        {
-            title: `${city} Market Optimized`,
-            description: `Server clusters located strategicially for lightning-fast redirects and local compliance in ${city}.`,
-            icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-        },
-        {
-            title: "Agency Services",
-            description: "Get monthly marketing plans, campaign reports, and dedicated support from our expert team.",
-            icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-        },
-        {
-            title: "Deep Analytics",
-            description: `Track clicks by city (${city}, etc.), device types, and referral sources to optimize ROI.`,
-            icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        }
-    ];
-
-    const displayFeatures = customFeatures || defaultFeatures;
-
+export default function FeaturesSection() {
     return (
-        <section className={styles.features}>
+        <section className={styles.section} style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, transparent 100%)' }}>
             <div className="container">
-                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>Powerful Features</h2>
-                    <p style={{ color: 'hsl(var(--muted-foreground))' }}>Everything you need to manage your links and grow your business.</p>
-                </div>
-
-                <div className={styles.featureGrid}>
-                    {displayFeatures.map((feature, index) => (
-                        <div key={index} className={styles.featureCard}>
-                            <div className={styles.featureIcon}>
-                                {feature.icon}
-                            </div>
-                            <h3 className={styles.featureTitle}>{feature.title}</h3>
-                            <p className={styles.featureDesc}>{feature.description}</p>
+                <SectionHeading
+                    title="Why Choose Moneygen?"
+                    subtitle="We don't just provide information; we provides a blueprint for your financial independence."
+                />
+                <div className={styles.grid} style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>
+                    {features.map((feature, index) => (
+                        <div key={index} className="card" style={{ textAlign: 'left', padding: '2.5rem', background: 'white', border: '1px solid hsl(var(--border) / 0.5)', transition: 'all 0.3s ease' }}>
+                            <div style={{ fontSize: '3rem', marginBottom: '1.5rem', filter: 'drop-shadow(0 10px 10px rgba(var(--primary), 0.1))' }}>{feature.icon}</div>
+                            <h3 className={styles.cardTitle} style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>{feature.title}</h3>
+                            <p className={styles.cardDesc} style={{ lineHeight: '1.8', marginBottom: 0 }}>{feature.description}</p>
                         </div>
                     ))}
                 </div>

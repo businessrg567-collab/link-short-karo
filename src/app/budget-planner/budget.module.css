@@ -1,0 +1,132 @@
+.main {
+    padding-bottom: 100px;
+}
+
+.toolGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+@media (min-width: 1024px) {
+    .toolGrid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.cardTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+    margin-bottom: 1.25rem;
+}
+
+.inputGroup label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--background));
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+}
+
+.resultsWrapper {
+    position: sticky;
+    top: 100px;
+}
+
+.resultCard {
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.positive {
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, #2e7d32 100%);
+}
+
+.negative {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+}
+
+.resultLabel {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.resultValue {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.savingsInfo {
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.summaryItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid hsl(var(--border));
+    font-size: 0.95rem;
+}
+
+.summaryItem:last-child {
+    border-bottom: none;
+}
+
+.total {
+    font-weight: 800;
+    color: hsl(var(--primary));
+    font-size: 1.1rem;
+    border-top: 2px solid hsl(var(--border));
+}
+
+.tipBox {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: hsl(var(--primary) / 0.05);
+    border-radius: var(--radius);
+    border: 1px dashed hsl(var(--primary) / 0.3);
+}
+
+.tipBox h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--primary));
+}
+
+.tipBox p {
+    font-size: 0.9rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.6;
+}

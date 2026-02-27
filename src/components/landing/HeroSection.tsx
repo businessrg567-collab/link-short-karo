@@ -1,53 +1,76 @@
-'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './HeroSection.module.css';
 
-import LinkShortener from '@/components/LinkShortener';
-import styles from '@/app/page.module.css';
-
-interface HeroSectionProps {
-    title?: React.ReactNode;
-    cityName?: string;
-    subtitle?: string;
-    badge?: string;
-    showShortener?: boolean;
-}
-
-export default function HeroSection({
-    title,
-    cityName,
-    subtitle,
-    badge = "🚀 #1 Link Management Platform in India",
-    showShortener = true
-}: HeroSectionProps) {
+export default function HeroSection() {
     return (
-        <section className={styles.hero}>
-            <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <span className={styles.badge}>{badge}</span>
-                <h1 className={styles.title}>
-                    {title || (
-                        <>
-                            {cityName ? (
-                                <>The #1 Link Shortener in <br /><span className="title-gradient">{cityName}</span></>
-                            ) : (
-                                <>Make Every Connection <br /><span className="title-gradient">Count with LinkShortKaro</span></>
-                            )}
-                        </>
-                    )}
+        <section className={styles.hero} style={{ 
+            width: '100%', 
+            display: 'flex', 
+            flexDirection: 'column',
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            padding: '120px 0',
+            background: 'radial-gradient(circle at center, hsl(var(--primary) / 0.03), transparent 70%)',
+            textAlign: 'center'
+        }}>
+            <div style={{
+                width: '100%',
+                maxWidth: '1100px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '2.5rem',
+                marginTop: 0,
+                marginBottom: 0,
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            }}>
+                {/* Badge Container */}
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <span className={styles.badge} style={{ marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0 }}>#1 Finance & Business Guide India</span>
+                </div>
+
+                {/* Title */}
+                <h1 className={styles.title} style={{ marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0, alignSelf: 'center' }}>
+                    Start Your <span className="title-gradient">Small Business</span> with Zero Investment
                 </h1>
-                <p className={styles.subtitle}>
-                    {subtitle || "A powerful SaaS & Agency hybrid. Shorten links, track campaigns, and grow your audience with our expert enquiry services tuned for the Indian market."}
+                
+                {/* Description */}
+                <p className={styles.description} style={{ marginTop: 0, marginBottom: 0, marginLeft: 0, marginRight: 0, alignSelf: 'center' }}>
+                    Discover expert-curated business ideas, online shop strategies, and complete financial guides to help you earn and grow in 2026.
                 </p>
 
-                {showShortener && (
-                    <div className={styles.toolSection}>
-                        <LinkShortener />
-                    </div>
-                )}
+                {/* CTA Buttons */}
+                <div className={styles.ctaGroup} style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    justifyContent: 'center', 
+                    gap: '1.5rem', 
+                    width: '100%',
+                    alignItems: 'center'
+                }}>
+                    <Link href="/small-business-ideas" className="btn btn-primary btn-lg">Explore Business Ideas</Link>
+                    <Link href="/budget-planner" className="btn btn-outline btn-lg">Trial Budget Planner</Link>
+                </div>
 
-                <div style={{ marginTop: '4rem', width: '100%', maxWidth: '500px' }}>
-                    <p style={{ fontSize: '0.9rem', color: 'hsl(var(--muted-foreground))', marginBottom: '1rem' }}>Join 5,000+ marketers receiving our weekly insights.</p>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                        <input type="email" placeholder="Enter your email" style={{ flex: 1, padding: '0.75rem 1rem', borderRadius: 'var(--radius)', border: '1px solid hsl(var(--border))', background: 'hsl(var(--background))', color: 'hsl(var(--foreground))' }} />
-                        <button className="btn btn-primary" onClick={() => alert('Thanks for subscribing! Check your inbox for our latest guide.')}>Subscribe</button>
+                {/* Stats Grid */}
+                <div className={styles.stats} style={{ width: '100%', alignSelf: 'center', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+                    <div className={styles.statBox}>
+                        <div className={styles.statValue}>500+</div>
+                        <div className={styles.statLabel}>Expert Ideas</div>
+                    </div>
+                    <div className={styles.statBox}>
+                        <div className={styles.statValue}>50k+</div>
+                        <div className={styles.statLabel}>Monthly Readers</div>
+                    </div>
+                    <div className={styles.statBox}>
+                        <div className={styles.statValue}>₹10Cr+</div>
+                        <div className={styles.statLabel}>Savings</div>
+                    </div>
+                    <div className={styles.statBox}>
+                        <div className={styles.statValue}>100%</div>
+                        <div className={styles.statLabel}>Free Access</div>
                     </div>
                 </div>
             </div>

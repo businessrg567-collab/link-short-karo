@@ -1,0 +1,18 @@
+.placeholder {
+    min-height: 100px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: var(--radius);
+    background-color: transparent;
+}
+
+:global(.development) .placeholder {
+    background-color: hsl(var(--muted) / 0.3);
+    border: 1px dashed hsl(var(--border));
+}
+
+.rectangle {
+    min-height: 250px;
+}

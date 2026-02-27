@@ -1,55 +1,56 @@
-'use client';
+import SectionHeading from '@/components/SectionHeading';
+import PopularTools from '@/components/PopularTools';
+import styles from '../privacy/Legal.module.css';
 
-import styles from '../page.module.css';
-
-export default function TermsOfService() {
+export default function TermsPage() {
     return (
         <main className={styles.main}>
-            <section style={{ padding: '8rem 0 4rem' }}>
-                <div className="container">
-                    <h1 className="title-gradient" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '2rem' }}>Terms of Service</h1>
-                    <div style={{ color: 'hsl(var(--muted-foreground))', lineHeight: '1.8', fontSize: '1.1rem' }}>
-                        <p style={{ marginBottom: '1.5rem' }}>Last Updated: February 5, 2026</p>
+            <div className="container">
+                <SectionHeading
+                    title="Terms & <span class='title-gradient'>Conditions</span>"
+                    subtitle="Please read these terms carefully before using Moneygen.online"
+                    centered
+                />
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>1. Agreement to Terms</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            By accessing our website at LinkShortKaro, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.
-                        </p>
+                <div className={styles.legalContent}>
+                    <span className={styles.lastUpdated}>Last Updated: February 22, 2026</span>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>2. Use License</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            Permission is granted to temporarily use the link shortening services for personal or commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
-                        </p>
-                        <ul style={{ marginBottom: '2rem', paddingLeft: '2rem' }}>
-                            <li>Modify or copy the materials;</li>
-                            <li>Use the materials for any illegal purpose;</li>
-                            <li>Attempt to decompile or reverse engineer any software contained on the website;</li>
-                            <li>Remove any copyright or other proprietary notations from the materials.</li>
-                        </ul>
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Moneygen if you do not agree to take all of the terms and conditions stated on this page.</p>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>3. Disclaimer</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            The materials on LinkShortKaro's website are provided on an 'as is' basis. LinkShortKaro makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property.
-                        </p>
+                    <h2>2. Intellectual Property Rights</h2>
+                    <p>Unless otherwise stated, Moneygen and/or its licensors own the intellectual property rights for all material on Moneygen. All intellectual property rights are reserved. You may access this from Moneygen for your own personal use subjected to restrictions set in these terms and conditions.</p>
+                    <p>You must not:</p>
+                    <ul>
+                        <li>Republish material from Moneygen</li>
+                        <li>Sell, rent or sub-license material from Moneygen</li>
+                        <li>Reproduce, duplicate or copy material from Moneygen</li>
+                        <li>Redistribute content from Moneygen</li>
+                    </ul>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>4. Limitations of Use</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            You agree not to use LinkShortKaro for shortening links that lead to:
-                        </p>
-                        <ul style={{ marginBottom: '2rem', paddingLeft: '2rem' }}>
-                            <li>Malware, viruses, or phishing sites;</li>
-                            <li>Hate speech or discriminatory content;</li>
-                            <li>Copyrighted material without permission;</li>
-                            <li>Any content that violates Indian law.</li>
-                        </ul>
+                    <h2>3. User Comments</h2>
+                    <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Moneygen does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Moneygen, its agents and/or affiliates.</p>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>5. Governing Law</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            These terms and conditions are governed by and construed in accordance with the laws of India and you irrevocably submit to the exclusive jurisdiction of the courts in Maharashtra.
-                        </p>
+                    <h2>4. Hyperlinking to our Content</h2>
+                    <p>The following organizations may link to our Website without prior written approval:</p>
+                    <ul>
+                        <li>Government agencies;</li>
+                        <li>Search engines;</li>
+                        <li>News organizations;</li>
+                        <li>Online directory distributors;</li>
+                    </ul>
+
+                    <h2>5. Content Liability</h2>
+                    <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
+
+                    <div className={styles.contactBox}>
+                        <h4>Legal concerns or feedback?</h4>
+                        <p>If you have any questions regarding our terms, please contact us at <strong>legal@moneygen.online</strong></p>
                     </div>
                 </div>
-            </section>
+
+                <PopularTools />
+            </div>
         </main>
     );
 }

@@ -1,0 +1,19 @@
+# AdSense Friendly robots.txt
+User-agent: *
+Allow: /
+
+# Specifically allow Google AdSense crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Specifically allow Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Specifically allow AdsBot for landing page quality assessment
+User-agent: AdsBot-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+Sitemap: https://moneygen.online/sitemap.xml

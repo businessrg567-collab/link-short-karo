@@ -1,67 +1,112 @@
+
 import { notFound } from 'next/navigation';
-import { indianCities } from '@/data/cityData';
-import { generateCityContent } from '@/utils/contentGenerator';
-import styles from '@/app/page.module.css';
+import { locationArticles, getLocationArticleBySlug } from '@/data/locationBusinessData';
+import Image from 'next/image';
+import styles from '@/components/ArticleDisplay.module.css';
+import RelatedArticles from '@/components/RelatedArticles';
+import TableOfContents from '@/components/TableOfContents';
+import SafeImage from '@/components/SafeImage';
 
-// Reusing components from landing refactor
-import HeroSection from '@/components/landing/HeroSection';
-import StatsSection from '@/components/landing/StatsSection';
-import HowItWorksSection from '@/components/landing/HowItWorksSection';
-import FeaturesSection from '@/components/landing/FeaturesSection';
-import LocationsGrid from '@/components/landing/LocationsGrid';
-import FaqSection from '@/components/landing/FaqSection';
-import CtaSection from '@/components/landing/CtaSection';
-
-interface PageProps {
+interface LocationArticlePageProps {
     params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-    return indianCities.map((city) => ({
-        slug: city.slug,
+    return locationArticles.map((article) => ({
+        slug: article.slug,
     }));
 }
 
-export default async function LocationPage({ params }: PageProps) {
+export default async function LocationArticlePage({ params }: LocationArticlePageProps) {
     const { slug } = await params;
-    const city = indianCities.find((c) => c.slug === slug);
+    const article = getLocationArticleBySlug(slug);
 
-    if (!city) {
+    if (!article) {
         notFound();
     }
 
-    const contentHtml = generateCityContent(city);
-
     return (
-        <main className={styles.main}>
-            {/* Simple SEO Metadata injection */}
-            <title>{`Link Shortener & Agency Services in ${city.name} | LinkShortKaro`}</title>
-            <meta name="description" content={`Advanced link management and digital strategy for ${city.name}. We analyze market supply and demand for ${city.industries.join(', ')} businesses in ${city.name}, providing sub-millisecond redirects and branded connectivity.`} />
-
-            <HeroSection
-                cityName={city.name}
-                subtitle={`${city.description} We empower ${city.name}'s economy with precision-engineered links.`}
-                badge={`📍 Serving ${city.name}, India`}
-                showShortener={false}
-            />
-            <StatsSection />
-            <FeaturesSection city={city.name} />
-            <HowItWorksSection />
-
-            {/* Advanced 4k+ Word Localized Insight Section */}
-            <section className="container py-12 border-t border-border bg-gradient-to-b from-card/30 to-background shadow-sm rounded-3xl my-8">
-                <div className="mx-auto max-w-5xl px-6">
-                    <div
-                        dangerouslySetInnerHTML={{ __html: contentHtml }}
-                        className="prose prose-xl dark:prose-invert max-w-none text-muted-foreground leading-relaxed"
-                        style={{ fontFamily: 'inherit' }}
-                    />
+        <article className={styles.article}>
+            <header className={styles.header}>
+                <div className="container">
+                    <div className={styles.meta}>
+                        <span className={styles.category}>{article.category}</span>
+                        <span className={styles.date}>{article.date}</span>
+                    </div>
+                    <h1 className={styles.title}>{article.title}</h1>
+                    <p className={styles.description}>{article.description}</p>
                 </div>
-            </section>
+            </header>
 
-            <LocationsGrid />
-            <FaqSection city={city.name} />
-            <CtaSection city={city.name} />
-        </main>
+            <div className="container">
+                {article.image && (
+                    <div className={styles.bannerImageWrapper}>
+                        <SafeImage
+                            key={`${article.slug}-hero-banner`}
+                            src={`${article.image}?auto=format&fit=crop&q=80&w=1200`}
+                            alt={article.title}
+                            style={{ 
+                                width: '100%', 
+                                height: '100%', 
+                                objectFit: 'cover',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                zIndex: 1
+                            }}
+                            loading="eager"
+                        />
+                    </div>
+                )}
+                
+                <div className={styles.contentGrid}>
+                    <div className={styles.mainContentWrapper}>
+                        <div className={styles.mainContent} dangerouslySetInnerHTML={{ __html: article.content }} />
+
+                        <section className={styles.faqSection} style={{ marginTop: '4rem' }}>
+                            <h2>Frequently Asked Questions</h2>
+                            <div className={styles.faqList}>
+                                {article.faqs.map((faq, i) => (
+                                    <div key={i} className={styles.faqItem}>
+                                        <h3>{faq.question}</h3>
+                                        <p>{faq.answer}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside className={styles.sidebar} style={{ height: '100%' }}>
+                        <div style={{ position: 'sticky', top: '2rem' }}>
+                            <TableOfContents />
+
+                            <div className={styles.sidebarCard} style={{ marginTop: '2rem' }}>
+                                <h3>Featured Cities</h3>
+                                <ul>
+                                    {locationArticles.slice(0, 5).map(a => (
+                                        <li key={a.slug}>
+                                            <a href={`/locations/${a.slug}`}>{a.title}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <RelatedArticles
+                    articles={locationArticles
+                        .filter(a => a.slug !== article.slug)
+                        .slice(0, 3)
+                        .map(a => ({
+                            slug: a.slug,
+                            title: a.title,
+                            path: `/locations/${a.slug}`,
+                            image: a.image
+                        }))
+                    }
+                />
+            </div>
+        </article>
     );
 }

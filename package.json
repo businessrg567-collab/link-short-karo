@@ -1,6 +1,7 @@
 {
-  "name": "link-short-karo",
-  "version": "0.1.0",
+  "name": "moneygen",
+  "version": "1.0.0",
+  "description": "Moneygen – Smart Ways to Earn & Grow. Finance and Small Business Ideas blog.",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,11 +1,12 @@
 .footer {
-  background: hsl(var(--secondary) / 0.3);
+  background: hsl(var(--secondary) / 0.5);
+  padding: 3rem 0 2rem;
   border-top: 1px solid hsl(var(--border));
-  padding: 5rem 0 2rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -13,31 +14,15 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 0.8fr 1fr 1fr 1.2fr;
-  gap: 2.5rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   margin-bottom: 4rem;
 }
 
-.locations {
-  display: none;
-}
-
-.locationList {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  list-style: none;
-  padding: 0;
-}
-
-.locationList li a {
-  font-size: 0.85rem;
-  color: hsl(var(--muted-foreground));
-  transition: color 0.2s;
-}
-
-.locationList li a:hover {
-  color: hsl(var(--primary));
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
 }
 
 .column h3 {
@@ -50,6 +35,7 @@
 .column ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .column ul li {
@@ -59,105 +45,103 @@
 .column ul li a {
   color: hsl(var(--muted-foreground));
   font-size: 0.95rem;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .column ul li a:hover {
   color: hsl(var(--primary));
+  padding-left: 5px;
 }
 
 .footerLogo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: hsl(var(--foreground));
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: hsl(var(--primary));
+  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   display: block;
-}
-
-.logoAccent {
-  color: hsl(var(--primary));
 }
 
 .brandDesc {
   color: hsl(var(--muted-foreground));
   font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  max-width: 400px;
 }
 
-.contactInfo p {
-  font-size: 0.9rem;
+.newsletterSection {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  box-shadow: var(--card-shadow);
+}
+
+@media (min-width: 992px) {
+  .newsletterSection {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.newsletterInfo h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
-  color: hsl(var(--muted-foreground));
 }
 
-.contactInfo strong {
-  color: hsl(var(--foreground));
+.newsletterInfo p {
+  color: hsl(var(--muted-foreground));
 }
 
 .subscribeForm {
   display: flex;
-  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
 }
 
 .subscribeInput {
-  padding: 0.875rem 1.25rem;
-  border-radius: var(--radius);
+  flex: 1;
+  padding: 0.75rem 1rem;
   border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
   background: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
-  transition: all 0.2s;
-  width: 100%;
+  font-size: 1rem;
 }
 
 .subscribeInput:focus {
   outline: none;
   border-color: hsl(var(--primary));
-  background: hsl(var(--background));
-  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.1);
 }
 
 .bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-top: 2rem;
   border-top: 1px solid hsl(var(--border));
-  color: hsl(var(--muted-foreground));
-  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
-.bottomLinks {
+@media (min-width: 768px) {
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.bottom p {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.85rem;
+}
+
+.socialLinks {
   display: flex;
   gap: 1.5rem;
-}
-
-.bottomLinks a:hover {
-  color: hsl(var(--foreground));
-}
-
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .locationList {
-    grid-template-columns: 1fr;
-  }
-
-  .bottom {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
 }

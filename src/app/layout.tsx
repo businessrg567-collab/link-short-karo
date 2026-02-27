@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'LinkShortKaro | Powerful Link Shortener & Agency',
-  description: 'Free link shortener tools and premium marketing services.',
+  title: 'Moneygen | Small Business & Finance Guides',
+  description: 'Smart Ways to Earn & Grow. Discover small business ideas, loan guides, and financial tools.',
 }
 
 import Navbar from '@/components/Navbar'
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={inter.variable} suppressHydrationWarning>
         <Navbar />
         {children}
         <Footer />

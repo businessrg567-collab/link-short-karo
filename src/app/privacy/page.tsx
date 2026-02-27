@@ -1,57 +1,52 @@
-'use client';
+import SectionHeading from '@/components/SectionHeading';
+import PopularTools from '@/components/PopularTools';
+import styles from './Legal.module.css';
 
-import styles from '../page.module.css';
-
-export default function PrivacyPolicy() {
+export default function PrivacyPage() {
     return (
         <main className={styles.main}>
-            <section style={{ padding: '8rem 0 4rem' }}>
-                <div className="container">
-                    <h1 className="title-gradient" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '2rem' }}>Privacy Policy</h1>
-                    <div style={{ color: 'hsl(var(--muted-foreground))', lineHeight: '1.8', fontSize: '1.1rem' }}>
-                        <p style={{ marginBottom: '1.5rem' }}>Last Updated: February 5, 2026</p>
+            <div className="container">
+                <SectionHeading
+                    title="Privacy <span class='title-gradient'>Policy</span>"
+                    subtitle="Your privacy is critically important to us at Moneygen.online"
+                    centered
+                />
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>1. Introduction</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            Welcome to LinkShortKaro. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights.
-                        </p>
+                <div className={styles.legalContent}>
+                    <span className={styles.lastUpdated}>Last Updated: February 22, 2026</span>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>2. Data We Collect</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            We may collect, use, store and transfer different kinds of personal data about you, including:
-                        </p>
-                        <ul style={{ marginBottom: '2rem', paddingLeft: '2rem' }}>
-                            <li><strong>Identity Data:</strong> Name, username, or similar identifier.</li>
-                            <li><strong>Contact Data:</strong> Email address and telephone numbers.</li>
-                            <li><strong>Technical Data:</strong> IP address, browser type, and location data when you shorten links.</li>
-                            <li><strong>Usage Data:</strong> Information about how you use our website and services.</li>
-                        </ul>
+                    <h2>1. Introduction</h2>
+                    <p>At Moneygen, accessible from moneygen.online, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Moneygen and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>3. How We Use Your Data</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            We will only use your personal data when the law allows us to. Most commonly, we will use your personal data to:
-                        </p>
-                        <ul style={{ marginBottom: '2rem', paddingLeft: '2rem' }}>
-                            <li>Process and manage your link shortening requests.</li>
-                            <li>Provide you with campaign analytics and reports.</li>
-                            <li>Send you our newsletter if you have opted in.</li>
-                            <li>Improve our website and user experience.</li>
-                        </ul>
+                    <h2>2. Log Files</h2>
+                    <p>Moneygen follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
+                    <p>These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>4. Data Security</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way. We limit access to your personal data to those employees and partners who have a business need to know.
-                        </p>
+                    <h2>3. Cookies and Web Beacons</h2>
+                    <p>Like any other website, Moneygen uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
 
-                        <h2 style={{ color: 'hsl(var(--foreground))', marginTop: '2.5rem', marginBottom: '1rem' }}>5. Contact Us</h2>
-                        <p style={{ marginBottom: '1.5rem' }}>
-                            If you have any questions about this privacy policy or our privacy practices, please contact us at:
-                        </p>
-                        <p><strong>Email:</strong> privacy@linkshortkaro.com</p>
-                        <p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+                    <h2>4. Google DoubleClick DART Cookie</h2>
+                    <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.website.com and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></p>
+
+                    <h2>5. Our Advertising Partners</h2>
+                    <p>Some of advertisers on our site may use cookies and web beacons. Our advertising partners include:</p>
+                    <ul>
+                        <li>Google AdSense</li>
+                        <li>Other local affiliate partners</li>
+                    </ul>
+                    <p>Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier access, we hyperlinked to their Privacy Policies below.</p>
+
+                    <h2>6. Third Party Privacy Policies</h2>
+                    <p>Moneygen's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
+
+                    <div className={styles.contactBox}>
+                        <h4>Questions regarding our data policy?</h4>
+                        <p>If you have any questions about this Privacy Policy, please contact us at <strong>privacy@moneygen.online</strong></p>
                     </div>
                 </div>
-            </section>
+
+                <PopularTools />
+            </div>
         </main>
     );
 }

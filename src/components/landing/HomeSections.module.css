@@ -1,0 +1,130 @@
+.section {
+    padding: 30px 0;
+}
+
+.sectionDark {
+    padding: 30px 0;
+    background: hsl(var(--secondary) / 0.5);
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 50px 0;
+    }
+
+    .sectionDark {
+        padding: 50px 0;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContent {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .cardContent {
+        padding: 2rem;
+    }
+}
+
+.cardImageWrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: hsl(var(--secondary));
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .cardImage {
+    transform: scale(1.05);
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: hsl(var(--foreground));
+}
+
+.cardDesc {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.readMore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(var(--primary));
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.readMore:hover {
+    gap: 0.8rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.iconBox {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.guideCat {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
