@@ -11,6 +11,14 @@
     background: transparent;
 }
 
+@media (max-width: 1023px) {
+    .navbar {
+        height: 70px;
+        background: hsl(var(--background));
+        border-bottom: 1px solid hsl(var(--border));
+    }
+}
+
 .scrolled {
     background: hsl(var(--background) / 0.8);
     backdrop-filter: blur(12px);
@@ -42,6 +50,12 @@
     letter-spacing: -0.04em;
 }
 
+@media (max-width: 480px) {
+    .logoText {
+        font-size: 1.5rem;
+    }
+}
+
 .logoTagline {
     font-size: 0.7rem;
     font-weight: 700;
@@ -55,6 +69,7 @@
 }
 
 .links {
+    display: none;
     gap: 1.5rem;
     white-space: nowrap;
 }
@@ -99,7 +114,7 @@
     flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .actions {
         display: block;
     }

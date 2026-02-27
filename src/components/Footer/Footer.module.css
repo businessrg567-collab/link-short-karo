@@ -81,6 +81,12 @@
   box-shadow: var(--card-shadow);
 }
 
+@media (max-width: 768px) {
+  .newsletterSection {
+    padding: 1.5rem;
+  }
+}
+
 @media (min-width: 992px) {
   .newsletterSection {
     flex-direction: row;
@@ -101,9 +107,16 @@
 
 .subscribeForm {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   width: 100%;
   max-width: 500px;
+}
+
+@media (min-width: 640px) {
+  .subscribeForm {
+    flex-direction: row;
+  }
 }
 
 .subscribeInput {
